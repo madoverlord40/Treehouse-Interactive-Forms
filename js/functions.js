@@ -96,7 +96,7 @@ function ValidateCreditNumberField() {
     const cardValue = creditCardInput.value;
 
     //regEx variables for testing card number
-    var cardTest =  /^4[0-9]{12}(?:[0-9]{3})?$/;
+    var cardTest =  /^4[0-9]{12}(?:[0-9]{4})?$/;
     const cardNumTest = cardTest.test(cardValue);
 
     creditCardInput.parentNode.lastElementChild.style.display = (cardNumTest) ? "none" : "block";
