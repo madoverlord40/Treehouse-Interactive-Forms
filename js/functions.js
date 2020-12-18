@@ -94,10 +94,14 @@ function OnPaymentOptionChanged (event) {
 function ValidateCreditNumberField() {
     
     const cardValue = creditCardInput.value;
+    let cardNumTest = false;
 
-    //regEx variables for testing card number
-    var cardTest =  /^4[0-9]{12}(?:[0-9]{4})?$/;
-    const cardNumTest = cardTest.test(cardValue);
+    //we cant use more than 16 digits, then we use regex to get capture groups for 13-16 digits
+    if(cardValue.length <= 16) {
+        //regEx variables for testing card number
+        var cardTest =  /(^4[0-9]{12}(?:[0-9]{3})?)/g;
+        cardNumTest = cardTest.test(cardValue);
+    }
 
     creditCardInput.parentNode.lastElementChild.style.display = (cardNumTest) ? "none" : "block";
 
@@ -109,6 +113,7 @@ function ValidateCreditNumberField() {
         creditCardInput.parentNode.classList.add('not-valid');
         creditCardInput.parentNode.classList.remove('valid');
     }
+
     return cardNumTest;
 }
 
