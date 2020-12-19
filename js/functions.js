@@ -99,7 +99,7 @@ function ValidateCreditNumberField() {
     //we cant use more than 16 digits, then we use regex to get capture groups for 13-16 digits
     if(cardValue.length <= 16) {
         //regEx variables for testing card number
-        var cardTest =  /(^4[0-9]{12}(?:[0-9]{3})?)/g;
+        var cardTest =  /(^[0-9]{13}(?:[0-9]{3})?)/g;
         cardNumTest = cardTest.test(cardValue);
     }
 
