@@ -96,13 +96,16 @@ function ValidateCreditNumberField() {
     const cardValue = creditCardInput.value;
     let cardNumTest = false;
 
-    //we cant use more than 16 digits, then we use regex to get capture groups for 13-16 digits
-    if(cardValue.length <= 16) {
-        //regEx variables for testing card number
-        var cardTest =  /(^[0-9]{13}(?:[0-9]{3})?)/g;
-        cardNumTest = cardTest.test(cardValue);
+    const checkLetters = /^\d+$/;
+    //lets make sure we have only digits in the text field using checkletters regex
+    if(checkLetters.test(cardValue)) {
+        //we cant use more than 16 digits, then we use regex to get capture 13-16 digits
+        if(cardValue.length <= 16 && cardValue.length > 12) {
+            //regEx variables for testing card number 13 to 16 digits
+            var cardTest =  /[0-9]{13}(?:[0-9]{3})?/;
+            cardNumTest = cardTest.test(cardValue);
+        }
     }
-
     creditCardInput.parentNode.lastElementChild.style.display = (cardNumTest) ? "none" : "block";
 
     if(cardNumTest) {
